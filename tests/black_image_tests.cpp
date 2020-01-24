@@ -13,6 +13,10 @@ TEST_CASE("Black image test") {
     {
         image->Clear();
     };
+
+    for (color x : image->GetFrameBuffer()) {
+        REQUIRE(x == color(0, 0, 0));
+    }
     
     REQUIRE(validate_framebuffer("references/black_image.png", image->GetFrameBuffer()));
 }
