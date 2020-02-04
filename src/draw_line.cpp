@@ -5,6 +5,7 @@
 #include <math.h>
 
 #include <algorithm>
+#include <iostream>
 
 
 LineDrawing::LineDrawing(unsigned short width, unsigned short height) : ColorSpace(width, height) {
@@ -20,7 +21,7 @@ void LineDrawing::DrawLine(unsigned short x_begin, unsigned short y_begin, unsig
 		std::swap(x_begin, y_begin);
 		std::swap(x_end, y_end);
 	}
-	
+
 	if (x_begin > x_end) {
 		std::swap(x_begin, x_end);
 		std::swap(y_begin, y_end);
@@ -32,12 +33,14 @@ void LineDrawing::DrawLine(unsigned short x_begin, unsigned short y_begin, unsig
 	float dy = abs(static_cast<float>(y_end - y_begin));
 
 	float error = dx / 2.0;
-	
+
 	float slope = static_cast<float>(y_end - y_begin) / static_cast<float>(x_end - x_begin);
 
 	for (unsigned short x = x_begin; x <= x_end; x++) {
 		float y = y_begin + slope * (x - x_begin);
-		
+
+		//std::cout << "Line: " << x << " " << y << ", " << (steep ? "Steep" : "Gentle") << std::endl;
+
 		if (steep) {
 			SetPixel(y, x, color);
 		} else {
@@ -55,8 +58,8 @@ void LineDrawing::DrawLine(unsigned short x_begin, unsigned short y_begin, unsig
 
 void LineDrawing::DrawScene() {
 	unsigned short x_center = width / 2,
-				   y_center = height / 2,
-				   radius = std::min(x_center, y_center) - 40;
+		y_center = height / 2,
+		radius = std::min(x_center, y_center) - 40;
 
 	for (float angle = 0.0; angle < 360.0; angle += 5.0) {
 		DrawLine(x_center, y_center,
@@ -66,4 +69,3 @@ void LineDrawing::DrawScene() {
 	}
 
 }
-

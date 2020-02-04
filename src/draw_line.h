@@ -5,8 +5,7 @@
 
 
 
-class LineDrawing: public ColorSpace
-{
+class LineDrawing : public ColorSpace {
 public:
 	LineDrawing(unsigned short width, unsigned short height);
 	virtual ~LineDrawing();

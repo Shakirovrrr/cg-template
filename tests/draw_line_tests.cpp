@@ -7,13 +7,12 @@
 #include "draw_line.h"
 
 TEST_CASE("Draw line test") {
-    LineDrawing* image = new LineDrawing(1920, 1080);
-    image->Clear();
-    
-    BENCHMARK("Draw scene") 
-    {
-        image->DrawScene();
-    };
-    
-    REQUIRE(validate_framebuffer("references/draw_line.png", image->GetFrameBuffer()));
+	LineDrawing *image = new LineDrawing(1920, 1080);
+	image->Clear();
+
+	BENCHMARK("Draw scene") {
+		image->DrawScene();
+	};
+
+	REQUIRE(validate_framebuffer("references/draw_line.png", image->GetFrameBuffer()));
 }

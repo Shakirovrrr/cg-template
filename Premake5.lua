@@ -41,7 +41,7 @@ group "01. Black image"
       files { "lib/stb/stb_image.h", "tests/utils.h", "tests/black_image_tests.cpp" }
       links "Black image lib"
       debugargs { "--benchmark-samples", "25" }
---]]
+
     
 group "02. Color space"
    project "Color space lib"
@@ -67,8 +67,8 @@ group "02. Color space"
       files { "lib/stb/stb_image.h", "tests/utils.h", "tests/color_space_tests.cpp" }
       links "Color space lib"
       debugargs { "--benchmark-samples", "25" }
+--]]
 
---[[
 group "03. Draw line"
    project "Draw line lib"
       kind "StaticLib"
@@ -94,7 +94,7 @@ group "03. Draw line"
       links "Draw line lib"
       debugargs { "--benchmark-samples", "25" }
 
-
+--[[
 group "04. Read obj"
    project "Read obj lib"
       kind "StaticLib"
