@@ -7,16 +7,15 @@
 #include "black_image.h"
 
 TEST_CASE("Black image test") {
-    BlackImage* image = new BlackImage(1920, 1080);
-    
-    BENCHMARK("Clear") 
-    {
-        image->Clear();
-    };
+	BlackImage *image = new BlackImage(1920, 1080);
 
-    for (color x : image->GetFrameBuffer()) {
-        REQUIRE(x == color(0, 0, 0));
-    }
-    
-    REQUIRE(validate_framebuffer("references/black_image.png", image->GetFrameBuffer()));
+	BENCHMARK("Clear") {
+		image->Clear();
+	};
+
+	for (color x : image->GetFrameBuffer()) {
+		REQUIRE(x == color(0, 0, 0));
+	}
+
+	REQUIRE(validate_framebuffer("references/black_image.png", image->GetFrameBuffer()));
 }

@@ -7,14 +7,13 @@
 #include "color_space.h"
 
 TEST_CASE("Color space test") {
-    ColorSpace* render = new ColorSpace(1920, 1080);
+	ColorSpace *render = new ColorSpace(1920, 1080);
 
-    render->Clear();
+	render->Clear();
 
-    BENCHMARK("Draw scene") 
-    {
-        render->DrawScene();
-    };
-    
-    REQUIRE(validate_framebuffer("references/color_space.png", render->GetFrameBuffer()));
+	BENCHMARK("Draw scene") {
+		render->DrawScene();
+	};
+
+	REQUIRE(validate_framebuffer("references/color_space.png", render->GetFrameBuffer()));
 }

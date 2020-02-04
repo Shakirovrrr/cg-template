@@ -6,19 +6,18 @@
 #include "structs.h"
 
 
-class BlackImage
-{
+class BlackImage {
 public:
-    BlackImage(unsigned short width, unsigned short height);
-    virtual ~BlackImage();
+	BlackImage(unsigned short width, unsigned short height);
+	virtual ~BlackImage();
 
-    void Clear();
-    int Save(std::string filename) const;
+	void Clear();
+	int Save(std::string filename) const;
 
-    std::vector<color> GetFrameBuffer() const; 
+	std::vector<color> GetFrameBuffer() const;
 protected:
-    unsigned short height;
-    unsigned short width;
+	unsigned short height;
+	unsigned short width;
 
-    std::vector<color> frame_buffer;
+	std::vector<color> frame_buffer;
 };

@@ -3,8 +3,7 @@
 #include "black_image.h"
 
 
-class ColorSpace : public BlackImage
-{
+class ColorSpace : public BlackImage {
 public:
 	ColorSpace(unsigned short width, unsigned short height);
 	virtual ~ColorSpace();
