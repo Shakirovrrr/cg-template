@@ -4,15 +4,14 @@
 #include "draw_line.h"
 
 
-class ObjParser
-{
+class ObjParser {
 public:
 	ObjParser(std::string filename);
 	virtual ~ObjParser();
 
 	int Parse();
 
-	const std::vector<face>& GetFaces();
+	const std::vector<face> &GetFaces();
 
 protected:
 	std::string filename;
@@ -20,12 +19,11 @@ protected:
 	std::vector<float4> vertexes;
 	std::vector<face> faces;
 
-	std::vector<std::string> Split(const std::string& s, char delimiter);
+	std::vector<std::string> Split(const std::string &s, char delimiter);
 };
 
 
-class ReadObj: public LineDrawing
-{
+class ReadObj : public LineDrawing {
 public:
 	ReadObj(unsigned short width, unsigned short height, std::string obj_file);
 	virtual ~ReadObj();
@@ -33,5 +31,5 @@ public:
 	void DrawScene();
 
 protected:
-	ObjParser* parser;
+	ObjParser *parser;
 };

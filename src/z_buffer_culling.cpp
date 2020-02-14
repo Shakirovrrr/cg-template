@@ -16,7 +16,7 @@ ZCulling::~ZCulling()
 
 void ZCulling::DrawScene()
 {
-
+	Projection::DrawScene();
 }
 
 void ZCulling::Clear()
