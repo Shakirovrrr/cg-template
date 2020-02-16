@@ -93,7 +93,7 @@ group "03. Draw line"
       files { "lib/stb/stb_image.h", "tests/utils.h", "tests/draw_line_tests.cpp" }
       links "Draw line lib"
       debugargs { "--benchmark-samples", "25" }
---]]
+
 
 group "04. Read obj"
    project "Read obj lib"
@@ -119,8 +119,8 @@ group "04. Read obj"
       files { "lib/stb/stb_image.h", "tests/utils.h", "tests/read_obj_tests.cpp" }
       links "Read obj lib"
       debugargs { "--benchmark-samples", "25" }
+--]]
 
---[[
 group "05. Projection"
    project "Projection lib"
       kind "StaticLib"
@@ -146,7 +146,7 @@ group "05. Projection"
       links "Projection lib"
       debugargs { "--benchmark-samples", "25" }
 
-
+--[[
 group "06. Triangle rasterization"
    project "Triangle rasterization lib"
       kind "StaticLib"
