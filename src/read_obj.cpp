@@ -17,46 +17,42 @@ ObjParser::~ObjParser() {
 }
 
 int ObjParser::Parse() {
-	std::ifstream file(filename, std::ifstream::in);
-	if (file.fail()) {
+	std::ifstream obj_file(filename, std::ifstream::in);
+	if (obj_file.fail()) {
 		return 1;
 	}
 
 	std::string line;
-	while (std::getline(file, line)) {
+
+	while (std::getline(obj_file, line)) {
 		if (line.rfind("v ", 0) == 0) {
-			auto tokens = Split(line, ' ');
-
-			float4 ver {0,0,0,1};
-			for (unsigned int i = 1; i < tokens.size(); i++) {
-				ver[i - 1] = std::stof(tokens[i]);
+			// Process vertex
+			std::vector<std::string> vertexData = Split(line, ' ');
+			float4 vertex {0, 0, 0, 1};
+			for (int i = 1; i < vertexData.size(); i++) {
+				vertex[i - 1] = std::stof(vertexData.at(i));
 			}
-			vertexes.push_back(ver);
-
-		} else if (line.rfind("f", ' ') == 0) {
-			auto tokens = Split(line, ' ');
-
-			float4 first;
-			auto ind = std::stoi(Split(tokens[1], '/')[0]);
-			first = vertexes[vertexes.size() + ind];
-
-			float4 last;
-			float4 curr;
-			bool checked = false;
-
-			for (auto i = 2; i < tokens.size(); i++) {
-				if (tokens[i].size() != 0) {
-					auto ind = std::stoi(Split(tokens[i], '/')[0]);
-
-					curr = vertexes[vertexes.size() + ind];
-
-					if (checked) {
-						faces.push_back(face {first, last, curr});
-					}
-
-					last = curr;
-					checked = true;
+			vertexes.push_back(vertex);
+		} else if (line.rfind("f ", 0) == 0) {
+			// Process faces
+			std::vector<std::string> facesData = Split(line, ' ');
+			std::vector<int> indexes;
+			for (int i = 1; i < facesData.size(); i++) {
+				std::vector<std::string> indexData = Split(facesData.at(i), '/');
+				int index = std::stoi(indexData.at(0));
+				if (index > 0) {
+					index -= 1;
+				} else {
+					index += vertexes.size();
 				}
+				indexes.push_back(index);
+			}
+			for (int i = 0; i < indexes.size() - 2; i++) {
+				face face;
+				face.vertexes[0] = vertexes[indexes.at(0)];
+				face.vertexes[1] = vertexes[indexes.at(i + 1)];
+				face.vertexes[2] = vertexes[indexes.at(i + 2)];
+				faces.push_back(face);
 			}
 
 		}
@@ -73,12 +69,11 @@ std::vector<std::string> ObjParser::Split(const std::string &s, char delimiter) 
 	std::vector<std::string> tokens;
 	std::string token;
 	std::istringstream tokenStream(s);
-	while (std::getline(tokenStream, token, delimiter)) {
-		tokens.push_back(token);
-	}
+	std::copy(std::istream_iterator<std::string>(tokenStream),
+			  std::istream_iterator<std::string>(),
+			  std::back_inserter(tokens));
 	return tokens;
 }
-
 
 ReadObj::ReadObj(unsigned short width, unsigned short height, std::string obj_file) : LineDrawing(width, height) {
 	parser = new ObjParser(obj_file);
