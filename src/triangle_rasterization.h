@@ -4,8 +4,7 @@
 #include "projection.h"
 
 
-class TriangleRasterization: public Projection
-{
+class TriangleRasterization : public Projection {
 public:
 	TriangleRasterization(unsigned short width, unsigned short height, std::string obj_file);
 	virtual ~TriangleRasterization();
@@ -13,7 +12,7 @@ public:
 	void DrawScene();
 
 protected:
-	void DrawTriangle(float4 traingle[3]);
+	void DrawTriangle(float4 traingle[3], color mColor);
 
 	float EdgeFunction(float2 a, float2 b, float2 c);
 };

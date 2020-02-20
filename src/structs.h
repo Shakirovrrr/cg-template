@@ -25,9 +25,6 @@ struct color {
 	}
 };
 
-
-
-
 struct face {
 	float4 vertexes[3];
 };

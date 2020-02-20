@@ -119,7 +119,6 @@ group "04. Read obj"
       files { "lib/stb/stb_image.h", "tests/utils.h", "tests/read_obj_tests.cpp" }
       links "Read obj lib"
       debugargs { "--benchmark-samples", "25" }
---]]
 
 group "05. Projection"
    project "Projection lib"
@@ -145,8 +144,8 @@ group "05. Projection"
       files { "lib/stb/stb_image.h", "tests/utils.h", "tests/projection_tests.cpp" }
       links "Projection lib"
       debugargs { "--benchmark-samples", "25" }
+--]]
 
---[[
 group "06. Triangle rasterization"
    project "Triangle rasterization lib"
       kind "StaticLib"
@@ -172,7 +171,7 @@ group "06. Triangle rasterization"
       links "Triangle rasterization lib"
       debugargs { "--benchmark-samples", "25" }
 
-
+--[[
 group "07. Z-buffer culling"
    project "Z buffer culling lib"
       kind "StaticLib"
