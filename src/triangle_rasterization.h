@@ -1,8 +1,6 @@
 #pragma once
 
-
 #include "projection.h"
-
 
 class TriangleRasterization : public Projection {
 public:
